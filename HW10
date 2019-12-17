@@ -1,0 +1,56 @@
+
+#1
+
+The difference is :
+
+In w+ mode, If the file doesn't exist, it will create a new one.
+Also, it truncates the file to zero length if it exists.
+
+In r+ mode, If the file doesn't exist, it will not create a new one. It gives us an error.
+If the file exists, it will append it to the end.
+
+
+#include <stdio.h>
+int main()
+{
+FILE *fp;
+// open file in w+ mode  
+fp = fopen("xyz.txt", "w+");
+// write to the file
+fprintf(fp, "This is testing for fprintf...\n");
+
+// close the file
+fclose(fp);
+}
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
