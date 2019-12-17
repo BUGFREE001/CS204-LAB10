@@ -106,6 +106,187 @@ void compare_two_binary(FILE *file1,FILE *file2)
 
 
 
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+#3  and  #4  below together
+
+
+
+_______________________________
+
+// numbers1.txt (input file)
+
+78 43 89 67 75 90 34 97 78  89
+
+_______________________________
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+
+void sort(int nos[],int cnt);
+
+int main() {
+FILE *f1;
+int cnt=0,i=0,num;
+
+//Opening the intput file in read mode
+f1 = fopen("numbers1.txt", "r");
+if (f1 == NULL) {
+printf("** File not found **");
+exit(1);
+}
+else
+       {
+           while(fscanf(f1, "%d", &num)!=EOF)
+           {
+               cnt++;
+           }
+           fclose(f1);
+          
+           int nos[cnt];
+       f1 = fopen("numbers1.txt", "r");
+       for(i=0;i<cnt;i++)
+       {
+          fscanf(f1, "%d", &nos[i]);
+       }  
+fclose(f1);
+sort(nos,cnt);
+  
+f1 = fopen("numbers1.txt", "w");
+for(i=0;i<cnt;i++)
+{
+   fprintf(f1,"%d ",nos[i]);
+   if((i+1)%10==0)
+   fprintf(f1,"\n");
+       }
+       fclose(f1);
+}
+   return 0;
+  
+}
+void sort(int array[],int cnt)
+{
+       //This Logic will Sort the Array of elements in Ascending order
+   int temp,i,j;
+   for (i = 0; i < cnt; i++)
+{
+for (j = i + 1; j < cnt; j++)
+{
+if (array[i] > array[j])
+{
+temp = array[i];
+array[i] = array[j];
+array[j] = temp;
+}
+}
+}
+}
+
+______________________________________________
+
+
+
+-----------------------------------------------------------------------------------------
+
+
+
+______________________________________________
+
+
+numbers.txt (input file)
+
+143 11 286 37 173 234 -265 -286 85 186
+267 266 62 -139 -3 80 -225 10 141 142
+166 241 -26 3 -167 76 169 31 -27 167
+17 -65 77 -32 13 265 46 245 -261 22
+
+_______________________________________________
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+
+void sort(int nos[],int cnt);
+
+int main() {
+FILE *f1;
+const int SIZE=20;
+int cnt=0,i=0,num;
+
+//Opening the intput file in read mode
+f1 = fopen("numbers.txt", "r");
+if (f1 == NULL) {
+printf("** File not found **");
+exit(1);
+}
+else
+       {
+           int nos[SIZE];
+           while(fscanf(f1, "%d", &num)!=EOF)
+           {
+               cnt++;
+           }
+           fclose(f1);
+          
+           if(cnt>SIZE)
+           {
+               cnt=SIZE;
+           }
+          
+       f1 = fopen("numbers.txt", "r");
+       for(i=0;i<cnt;i++)
+       {
+          fscanf(f1, "%d", &nos[i]);
+       }  
+fclose(f1);
+sort(nos,cnt);
+  
+f1 = fopen("numbers.txt", "w");
+for(i=0;i<cnt;i++)
+{
+   fprintf(f1,"%d ",nos[i]);
+   if((i+1)%10==0)
+   fprintf(f1,"\n");
+       }
+       fclose(f1);
+}
+   return 0;
+  
+}
+void sort(int array[],int cnt)
+{
+       //This Logic will Sort the Array of elements in Ascending order
+   int temp,i,j;
+   for (i = 0; i < cnt; i++)
+{
+for (j = i + 1; j < cnt; j++)
+{
+if (array[i] > array[j])
+{
+temp = array[i];
+array[i] = array[j];
+array[j] = temp;
+}
+}
+}
+}
+
+_____________________________________________
+
+
+
+
+
+
+
+
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
