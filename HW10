@@ -112,6 +112,95 @@ void compare_two_binary(FILE *file1,FILE *file2)
 
 
 
+#5
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void mergeArrays(int arr1[], int arr2[], int n1,
+int n2, int arr3[])
+{
+int i = 0, j = 0, k = 0;
+  
+// Traverse both array
+while (i<n1 && j <n2)
+{
+// Check if current element of first
+// array is smaller than current element
+// of second array. If yes, store first
+// array element and increment first array
+// index. Otherwise do same with second array
+if (arr1[i] < arr2[j])
+arr3[k++] = arr1[i++];
+else
+arr3[k++] = arr2[j++];
+}
+  
+// Store remaining elements of first array
+while (i < n1)
+arr3[k++] = arr1[i++];
+  
+// Store remaining elements of second array
+while (j < n2)
+arr3[k++] = arr2[j++];
+}
+int main()
+{
+FILE *fptr; // this file pointer is used to print combined sorted integer
+FILE *filea = fopen("integersa.txt", "r"); // opeaning 1st integer file
+int integersa[100]; // declaring 1st array to store integera.txt file integers
+int i=0;
+int num;
+while(fscanf(filea, "%d", &num) > 0) { // scanning from file line by line
+integersa[i] = num; // filling integersa
+i++;
+}
+fclose(filea); // closing file
+FILE *fileb = fopen("integersb.txt", "r");
+int integersb[100];
+i=0;
+int numb;
+while(fscanf(fileb, "%d", &numb) > 0) {
+integersb[i] = numb;
+i++;
+}
+fclose(fileb);
+int arr3[11]; // declaring array that will contain combined sorted content
+mergeArrays(integersa, integersb, 7, 4, arr3); // calling merge array function that we created above
+fptr = (fopen("sorted_merged.txt", "w")); // we will print sorted merged content to this file
+if(fptr == NULL)
+{
+printf("Error!");
+exit(1);
+}
+
+for(i = 0; i < 11; ++i)
+{
+
+fprintf(fptr,"%d \n",arr3[i]); // printing to sorted_merged file
+}
+fclose(fptr);
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #6
 
