@@ -107,7 +107,95 @@ void compare_two_binary(FILE *file1,FILE *file2)
 
 
 
+-------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+
+
+#6
+
+
+// Before running this program create the two text files and enter them along with their extension when asked at the console.
+// Also note that the filename should be less than 100.
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> 
+
+int main()
+{
+FILE *frd;
+FILE *fwrite;
+
+int char_count;
+int length;
+int i;
+int temp,temp2;
+char filename[100], filename1[100],*C;
+
+
+printf("Enter the filename to open \n");
+scanf("%s", filename);
+printf("Enter the max line size(no of chars) \n");
+scanf("%d",&char_count);
+printf("Enter the filename to write the output \n");
+scanf("%s", filename1);
+
+
+// Open input file
+frd = fopen(filename, "r");
+//Open output file
+fwrite = fopen(filename1, "w");
+       //handle the case when input or output file does not exist.
+if (frd == NULL||(fwrite == NULL))
+{
+printf("Cannot open file \n");
+exit(0);
+}
+
+//start reading from input file
+if (frd)
+{
+fseek (frd, 0, SEEK_END);
+length = ftell (frd);
+fseek (frd, 0, SEEK_SET);
+C = malloc (length);
+if (C)
+{
+fread (C, 1, length, frd);
+}
+fclose (frd);
+}
+
+//C stores the content of entire file
+//traverse the string from the begining
+
+temp2 =0; // temp2 will keep track of the character in each line
+for(i=0;i<=(strlen(C));i++)
+{
+temp2++;
+   if(temp2 == char_count+1)
+   {
+       C[temp]='\n';
+       temp2 =i - temp;
+       }
+
+else if(C[i]==' ')
+{
+   temp =i;
+}
+
+}
+
+//write the contents to the file
+fprintf(fwrite,C);
+  
+return 0;
+}
 
 
 
